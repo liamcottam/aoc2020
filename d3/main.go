@@ -3,14 +3,10 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
-	"os"
 	"strings"
 )
 
 func main() {
-	f, _ := os.Open("./d2/input.txt")
-	defer f.Close()
-
 	bts, _ := ioutil.ReadFile("./d3/input.txt")
 	lines := strings.Split(string(bts), "\n")
 	fmt.Println(part1(lines, 3, 1))
@@ -26,7 +22,7 @@ func part1(input []string, dX, dY int) int {
 	)
 
 	for i := dY; i < nRows; i += dY {
-		if (input[i][posX%nLen]) == '#' {
+		if input[i][posX%nLen] == '#' {
 			result++
 		}
 		posX += dX
@@ -36,15 +32,10 @@ func part1(input []string, dX, dY int) int {
 }
 
 func part2(input []string) int {
-	var results []int
-	for _, slope := range [][]int{{1, 1}, {3, 1}, {5, 1}, {7, 1}, {1, 2}} {
-		results = append(results, part1(input, slope[0], slope[1]))
+	result := part1(input, 1, 1)
+	for _, slope := range [][]int{{3, 1}, {5, 1}, {7, 1}, {1, 2}} {
+		result *= part1(input, slope[0], slope[1])
 	}
 
-	answer := results[0]
-	for i := 1; i < len(results); i++ {
-		answer *= results[i]
-	}
-
-	return answer
+	return result
 }
