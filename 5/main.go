@@ -43,17 +43,16 @@ func part1(input string) int {
 		l   = 0
 		r   = 127
 		row = 0
-		col = 0
 	)
 
 loop:
 	for _, c := range input {
-		d := (r - l)
+		d := (r-l)/2 + 1
 		switch c {
 		case 'F':
-			r -= (d / 2) + 1
+			r -= d
 		case 'B':
-			l += (d / 2) + 1
+			l += d
 		case 'L':
 			row = l
 			break loop
@@ -66,26 +65,25 @@ loop:
 	l = 0
 	r = 7
 	n := len(input[len(input)-3:]) - 1
+	row *= 8
 
 	for idx, c := range input[len(input)-3:] {
-		d := (r - l)
+		d := (r-l)/2 + 1
 		switch c {
 		case 'F', 'L':
 			if idx == n {
-				col = l
-				break
+				return row + l
 			}
-			r -= (d / 2) + 1
+			r -= d
 		case 'B', 'R':
 			if idx == n {
-				col = r
-				break
+				return row + r
 			}
-			l += (d / 2) + 1
+			l += d
 		}
 	}
 
-	return row*8 + col
+	return 0
 }
 
 func part2() {}
