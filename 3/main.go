@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	bts, _ := ioutil.ReadFile("./d3/input.txt")
+	bts, _ := ioutil.ReadFile("./3/input.txt")
 	lines := strings.Split(string(bts), "\n")
 	fmt.Println(part1(lines, 3, 1))
 	fmt.Println(part2(lines))

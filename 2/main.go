@@ -19,7 +19,7 @@ func parseLine(input string) [][]string {
 }
 
 func main() {
-	f, _ := os.Open("./d2/input.txt")
+	f, _ := os.Open("./2/input.txt")
 	defer f.Close()
 
 	var (
